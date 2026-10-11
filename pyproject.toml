@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forge-design-flowchart"
+dynamic = ["version"]
+description = "Module spécialisé Flowchart pour Forge Design : organigrammes simples et libellés éditables"
+readme = "README.md"
+requires-python = ">=3.12"
+# Forge Design 0.2.0 : première version distribuée portant les actions de module,
+# le script d'édition, addOverlay et onViewChange utilisés par ce module
+# (FD-RELEASE-001). Même spécificateur que requires_forge_design du descripteur
+# (test de cohérence) ; <1 : politique de compatibilité 0.x du cœur.
+dependencies = ["forge-design>=0.2.0,<1", "pydantic>=2,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.9", "pyright>=1.1.390"]
+
+[tool.setuptools]
+packages = ["forge_design_flowchart"]
+
+[tool.setuptools.package-data]
+"forge_design_flowchart" = ["py.typed", "static/*.js", "static/*.css"]
+
+[tool.setuptools.dynamic]
+version = {attr = "forge_design_flowchart.__version__"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["forge_design_flowchart"]
+known-third-party = ["forge_design"]
+
+[tool.pyright]
+include = ["forge_design_flowchart", "tests"]
+pythonVersion = "3.12"
+typeCheckingMode = "strict"
+venvPath = "."
+venv = ".venv"

@@ -1,0 +1,51 @@
+/* ForgeDesign-Flowchart — feuille du module, chargée par l'hôte sur les seules pages
+   Flowchart (CSP style-src 'self'). Elle ne vise que les classes posées par le script
+   du module dans son calque (flow-*), jamais la structure du renderer. */
+
+/* Trace de la transition ciblée : visible au focus clavier ou au survol. */
+.flow-edge-trace { visibility: hidden; }
+.gx-overlay-item:focus-visible > .flow-edge-trace,
+.gx-overlay-item:hover > .flow-edge-trace { visibility: visible; }
+
+/* Champ d'édition en place : taille écran fixe (le groupe est contre-mis à l'échelle). */
+.flow-editor-box {
+  box-sizing: border-box;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  background: #fff;
+  border: 2px solid #824029;
+  border-radius: 6px;
+}
+.flow-editor-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 2px 6px;
+  font: 14px sans-serif;
+  color: #172033;
+  border: 1px solid #98a2b3;
+  border-radius: 4px;
+}
+.flow-editor-input[aria-invalid="true"] { border-color: #b42318; outline: 2px solid #b42318; }
+.flow-editor-input[aria-busy="true"] { background: #f2f4f7; }
+.flow-editor-save,
+.flow-editor-cancel {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 100%;
+  padding: 0;
+  font: 14px sans-serif;
+  color: #172033;
+  background: #f9fafb;
+  border: 1px solid #98a2b3;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.flow-editor-save:focus-visible,
+.flow-editor-cancel:focus-visible,
+.flow-editor-input:focus-visible { outline: 2px solid #824029; outline-offset: 1px; }
